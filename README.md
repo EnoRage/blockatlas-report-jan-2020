@@ -28,7 +28,7 @@ Future plans:
 - Using good CI/CD infrastructure to monitor each api handle for errors, load balancing 
 
 ## Load testing 
-
+```
 Handler: https://blockatlas-trust-staging.herokuapp.com/v1/market/charts?coin=60&time_start=1574483028&max_items=64&currency=USD
 Duration: 1m
 Timeout: 2s
@@ -36,13 +36,11 @@ FAILS %: 90
 Total REQ: 1519
 Good response: 178
 RPS: 20+
-
  
 Handler: https://blockatlas-trust-staging.herokuapp.com/v1/tezos/tz1WCd2jm4uSt4vntk4vSuUWoZQGhLcDuR9q
 Duration: 3m
 Timeout: 8s
 FAILS %: 99
-
  
 Handler: https://blockatlas-trust-staging.herokuapp.com/v1/bitcoin/xpub/zpub6ruK9k6YGm8BRHWvTiQcrEPnFkuRDJhR7mPYzV2LDvjpLa5CuGgrhCYVZjMGcLcFqv9b2WvsFtY2Gb3xq8NVq8qhk9veozrA2W9QaWtihrC
 Duration: 3m
@@ -59,7 +57,6 @@ FAILS %: 1
 Total REQ: 14318
 Good response: 14315
 RPS: 200+
-
  
 Handler: https://blockatlas-trust-staging.herokuapp.com/v2/tron/staking/delegations/TPJYCz8ppZNyvw7pTwmjajcx4Kk1MmEUhD
 Duration: 1m
@@ -68,6 +65,6 @@ FAILS %: 10
 Total REQ: 4618
 Good response: 4233
 RPS: 80+
-
+```
 
 ## Architecture problems
