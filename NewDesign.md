@@ -42,45 +42,30 @@ We will use layers infrastructure to optimize responses. Each module must be ato
 
 ## Observer
 
-Blockchain parser:
+Blockchain parser (Single instace per blockchain):
 1. Get latest block from network
 2. Parse block to the `blockatlas.Block` struct
-3. Set block to the Redis A
+3. Set block to the MQ
 
-REST Observer: 
+REST Observer (Multiple instaces per blockchain): 
 1. Handle request to subscribe `address, webhook` to the transactions
-2. Save this request to the Redis B
+2. Save this request to the Redis 
 
-Transactions and Address parser:
-1. Get `blockatlas.Block` from Redis A and get `[]Adresses, []Webhooks` from Redis B
+Transactions and Address parser (Multiple instaces per blockchain):
+1. Get `blockatlas.Block` from MQ and get `[]Adresses, []Webhooks` from Redis 
 2. Check `blockatlas.Block` transactions if they have `[]Adresses`
 4. Send Webhook with Transaction Details
-5. If Block is parsed, remove it from Redis A
+5. If Block is parsed, remove it from Redis 
 
-### PS
-
-1. We can easially rewrite webhooks by dumping them from the DB
-
-2. Speed of block fetching must be == Speeed of searching and sending webhooks
-
-We can make multiple parallel workers for searching and sending webhooks, for example:
-
-Each 2 / N block is parsing by Worker Group A
-Each (2 / N) + 1 lock is parsing by Worker Worker Group B
-
-Each 1000 Addresses are parsed by seprate Worker.
-
-Block will be deleted when all workers will parse it
+Redis and MQ - single instace per blockchain. Can be multiple with Master-Slave | Master-Master scaling if needs. (No needs, enough perfomance)
 
 ## Markets
 
 Prices Parser:
 1. Fetch Data
-2. Save to Reds
+2. Save to Redis Master
 
 Prices REST:
 1. Handle request
-2. Find Data in Redis
+2. Find Data in Redis Slave
 3. Return Data with response
-
-Each API => new group of Prices Parser + Prices REST + Redis
