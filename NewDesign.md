@@ -71,3 +71,14 @@ Each 1000 Addresses are parsed by seprate Worker.
 Block will be deleted when all workers will parse it
 
 ## Markets
+
+Prices Parser:
+1. Fetch Data
+2. Save to Reds
+
+Prices REST:
+1. Handle request
+2. Find Data in Redis
+3. Return Data with response
+
+Each API => new group of Prices Parser + Prices REST + Redis
