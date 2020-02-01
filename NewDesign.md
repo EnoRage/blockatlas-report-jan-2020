@@ -61,11 +61,11 @@ Redis and MQ - single instace per blockchain. Can be multiple with Master-Slave 
 
 ## Markets
 
-Prices Parser:
+Prices Parser (Single instance per API):
 1. Fetch Data
 2. Save to Redis Master
 
-Prices REST:
+Prices REST (Multiple instances per API):
 1. Handle request
 2. Find Data in Redis Slave
 3. Return Data with response
