@@ -1,6 +1,7 @@
 # New Design of Blockatlas
+New architecture design from NK, MS, AP backend team
 
-## Short details
+## Whole overview
 ![Image Platform](https://raw.githubusercontent.com/EnoRage/blockatlas-report-jan-2020/master/blockatlas.jpeg)
 
 
@@ -21,6 +22,7 @@ The whole blockatlas infrastructure will be:
 Each blockchain, market api will have separate REST, Redis, Readers and Writers
 
 ## Plaform 
+![Image Platform](https://github.com/EnoRage/blockatlas-report-jan-2020/raw/master/platform.png)
 
 Now Plaform API with methods like:
 - staking / delegations
@@ -33,12 +35,8 @@ Are called Plaform API and will have their own REST HTTP Client. Each plaform co
 There will be a second layer cache per each api handler that will reduce the response time for the same request. Second layer cache will be updated each time the new block will come to the blockchain. Some methods will have another caching rules.
 Plaform REST API must have atomic API Responses (we cannot separate the response logic more than will be at Plaform). 
 
-![Image Platform](https://github.com/EnoRage/blockatlas-report-jan-2020/raw/master/platform.png)
 
-### PS
-There are several methods that have response time more than 20 seconds. If code optimizations will not work we will use another approach for these methods.
 
-We will use layers infrastructure to optimize responses. Each module must be atomic, so we can run multiple atomic operations with workers and have a queue for them.
 
 ## Observer
 
