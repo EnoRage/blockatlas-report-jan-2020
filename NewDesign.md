@@ -18,7 +18,7 @@ The whole blockatlas infrastructure will be:
 
 Each blockchain, market api will have separate REST, Redis, Readers and Writers
 
-### Plaform 
+## Plaform 
 
 Now Plaform API with methods like:
 - staking / delegations
@@ -33,9 +33,41 @@ Plaform REST API must have atomic API Responses (we cannot separate the response
 
 ![Image Platform](https://github.com/EnoRage/blockatlas-report-jan-2020/raw/master/platform.png)
 
-### Ps
-
+### PS
 There are several methods that have response time more than 20 seconds. If code optimizations will not work we will use another approach for these methods.
 
 We will use layers infrastructure to optimize responses. Each module must be atomic, so we can run multiple atomic operations with workers and have a queue for them.
 
+## Observer
+
+Blockchain parser:
+1. Get latest block from network
+2. Parse block to the `blockatlas.Block` struct
+3. Set block to the Redis A
+
+REST Observer: 
+1. Handle request to subscribe `address, webhook` to the transactions
+2. Save this request to the Redis B
+
+Transactions and Address parser:
+1. Get `blockatlas.Block` from Redis A and get `[]Adresses, []Webhooks` from Redis B
+2. Check `blockatlas.Block` transactions if they have `[]Adresses`
+4. Send Webhook with Transaction Details
+5. If Block is parsed, remove it from Redis A
+
+### PS
+
+1. We can easially rewrite webhooks by dumping them from the DB
+
+2. Speed of block fetching must be == Speeed of searching and sending webhooks
+
+We can make multiple parallel workers for searching and sending webhooks, for example:
+
+Each 2 / N block is parsing by Worker Group A
+Each (2 / N) + 1 lock is parsing by Worker Worker Group B
+
+Each 1000 Addresses are parsed by seprate Worker.
+
+Block will be deleted when all workers will parse it
+
+## Markets
