@@ -31,7 +31,7 @@ Are called Plaform API and will have their own REST HTTP Client. Each plaform co
 There will be a second layer cache per each api handler that will reduce the response time for the same request. Second layer cache will be updated each time the new block will come to the blockchain. Some methods will have another caching rules.
 Plaform REST API must have atomic API Responses (we cannot separate the response logic more than will be at Plaform). 
 
-![Image Platform](https://github.com/EnoRage/blockatlas-report-jan-2020/raw/master/platform.jpeg)
+![Image Platform](https://github.com/EnoRage/blockatlas-report-jan-2020/raw/master/platform.png)
 
 ### Ps
 
