@@ -1,6 +1,8 @@
 # New Design of Blockatlas
 
 ## Short details
+![Image Platform](https://raw.githubusercontent.com/EnoRage/blockatlas-report-jan-2020/master/blockatlas.jpeg)
+
 
 We will have consistent REST API for operations with:
 - Market (any prices, charts, excange rates)
