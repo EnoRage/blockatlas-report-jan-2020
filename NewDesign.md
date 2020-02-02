@@ -38,6 +38,7 @@ Plaform REST API must have atomic API Responses (we cannot separate the response
 
 
 ## Observer
+![Image Observer](https://github.com/EnoRage/blockatlas-report-jan-2020/raw/master/observer.png)
 
 Blockchain parser (Single instace per blockchain):
 1. Get latest block from network
