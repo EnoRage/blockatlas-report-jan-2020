@@ -27,6 +27,10 @@ Future plans:
 - Each plaform / api must be runned concurrently / async from others, no perform service crash of crashes
 - Using good CI/CD infrastructure to monitor each api handle for errors, load balancing 
 
+## New design 
+
+Look at [new design document](https://github.com/EnoRage/blockatlas-report-jan-2020/blob/master/NewDesign.md) for details.
+
 ## Load testing 
 ```
 Handler: https://blockatlas-trust-staging.herokuapp.com/v1/market/charts?coin=60&time_start=1574483028&max_items=64&currency=USD
@@ -78,5 +82,3 @@ RPS: 80+
 7. Bad metrics solution needs more common and simple (nginx + istio)
 8. Long requests response to basically any request
 9. Redis is not mocked, no normal integration tests infrastructure, no side api mocks
-
-1.
