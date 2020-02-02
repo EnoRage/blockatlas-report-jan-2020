@@ -68,3 +68,15 @@ RPS: 80+
 ```
 
 ## Architecture problems
+
+1. Platform: when we have a load on specific - all the plaform has issues
+2. Most of the Blockatlas is statefull and cannot be scaled at all
+3. Everything has a single Redis. Wwritting to the one Redis.
+4. Redis is used not as cache. Is used like a db
+5. Redis fetures like inspiration time and M-S are not used at all
+6. Blockatlas is not working separately
+7. Bad metrics solution needs more common and simple (nginx + istio)
+8. Long requests response to basically any request
+9. Redis is not mocked, no normal integration tests infrastructure, no side api mocks
+
+1.
